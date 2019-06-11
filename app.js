@@ -1,7 +1,6 @@
 
-
 const btn__reset = document.querySelector('.btn__reset');
-
+const heart = document.querySelectorAll('.heart');
 const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 let missed = 0;
@@ -49,13 +48,15 @@ function checkLetter(bttn) {
   }
     if (match === 0) {
       missed += 1;
+      for (i=0; i < missed; i += 1) {
+        heart[i].src = "images/lostHeart.png";
+      }
     }
 }
 
 function checkWin() {
   const show = document.getElementsByClassName('show');
   const letter = document.getElementsByClassName('letter');
-
   const overlay = document.getElementById('overlay');
   const title = document.querySelector('.title');
   const btn = document.querySelector('.btn__reset');
@@ -84,8 +85,13 @@ btn__reset.addEventListener('click', () => {
   missed = 0;
   let button = document.getElementsByTagName('BUTTON');
     for (i=0; i < button.length; i += 1) {
-      button[i].removeAttribute('disabled'); 
+      button[i].removeAttribute('disabled');
     }
+  for (i=0; i < heart.length; i += 1) {
+    heart[i].src = "images/liveHeart.png";
+  }
+  overlay.classList.remove('lose');
+  overlay.classList.remove('win');
   addPhraseToDisplay(phrases);
 });
 
