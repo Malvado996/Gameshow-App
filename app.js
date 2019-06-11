@@ -82,6 +82,10 @@ btn__reset.addEventListener('click', () => {
   btn__reset.parentNode.style.display = "none";
   document.querySelector("#phrase ul").innerHTML = '';
   missed = 0;
+  let button = document.getElementsByTagName('BUTTON');
+    for (i=0; i < button.length; i += 1) {
+      button[i].removeAttribute('disabled'); 
+    }
   addPhraseToDisplay(phrases);
 });
 
@@ -90,7 +94,7 @@ btn__reset.addEventListener('click', () => {
 document.getElementById('qwerty').addEventListener('click', () => {
   if (event.target.innerHTML.length === 1) {
     checkLetter(event.target.innerHTML);
-    event.target.setAttribute('disabled', 'false');
+    event.target.setAttribute('disabled', 'true');
   }
   checkWin();
 });
